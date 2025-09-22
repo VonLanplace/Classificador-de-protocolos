@@ -1,47 +1,50 @@
 package model;
 
-public class ListaSimples<T>{
+public class ListaSimples<T> {
   private int size;
   private No<T> head;
   private No<T> tail;
 
-  public ListaSimples(){
+  public ListaSimples() {
     this.size = 0;
     this.head = null;
     this.tail = null;
   }
 
-  public int getSize(){
+  public int getSize() {
     return this.size;
   }
-  protected void setSize(int size){
+
+  protected void setSize(int size) {
     this.size = size;
   }
 
-  public No<T> getHead(){
+  public No<T> getHead() {
     return this.head;
   }
-  protected void setHead(No<T> head){
+
+  protected void setHead(No<T> head) {
     this.head = head;
   }
 
-  public No<T> getTail(){
+  public No<T> getTail() {
     return this.tail;
   }
-  protected void setTail(No<T> tail){
+
+  protected void setTail(No<T> tail) {
     this.tail = tail;
   }
 
-
   // Adiciona a fila
-  public void write(T content) throws Exception{
-    if(content == null) throw new IllegalArgumentException("The content cannot be null");
+  public void write(T content) throws Exception {
+    if (content == null)
+      throw new IllegalArgumentException("The content cannot be null");
 
     No<T> newNode = new No<T>(content);
-    if(this.size == 0){
+    if (this.size == 0) {
       this.head = newNode;
       this.tail = newNode;
-    }else{
+    } else {
       this.tail.setPrevious(newNode);
       this.tail = newNode;
     }
@@ -50,7 +53,8 @@ public class ListaSimples<T>{
 
   // Remove da Fila
   public T read() throws Exception {
-    if(this.size <= 0) throw new IllegalArgumentException("The list is empty");
+    if (this.size <= 0)
+      throw new IllegalArgumentException("The list is empty");
 
     No<T> oldNode = this.head;
     this.head = oldNode.getPrevious();
@@ -60,14 +64,14 @@ public class ListaSimples<T>{
     return content;
   }
 
-  //toString
-  public String toString(){
-    if(this.size == 0){
+  // toString
+  public String toString() {
+    if (this.size == 0) {
       return "[]";
-    }else{
+    } else {
       StringBuilder text = new StringBuilder("[\n");
       No<T> node = this.head;
-      for(int i = 0; i< this.size;i++){
+      for (int i = 0; i < this.size; i++) {
         text.append("\t");
         text.append(node.toString());
         text.append("\n");
